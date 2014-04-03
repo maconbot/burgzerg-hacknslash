@@ -16,6 +16,17 @@ public class ModifiedStat : BaseStat
 		_mods.Add (mod);
 	}
 
+	public string getModifiyingAttributeString()
+	{
+		string temp;
+
+		for(int i = 0; i < _mods.Count; i++)
+		{
+			UnityEngine.Debug.Log (_mods[i].attribute.Name);
+		}
+		return "";
+	}
+
 	private void calculateModValue()
 	{
 		_modValue = 0;

@@ -120,6 +120,13 @@ public class CharacterGenerator : MonoBehaviour {
 	{
 		if(GUI.Button (new Rect (Screen.width / 2 - 50, statStartingPos + (10 * LINE_HEIGHT), 100, LINE_HEIGHT), "Create"))
 		{
+			GameSettings gsScript = GameObject.Find("__Game Settings").GetComponent<GameSettings>();
+
+			// Change the cur value of the vitals to the max modified value of that vital
+
+
+			gsScript.SaveCharacterData();
+
 			Application.LoadLevel ("HackNSlash");
 		}
 	}
