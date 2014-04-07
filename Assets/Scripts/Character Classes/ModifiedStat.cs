@@ -18,13 +18,23 @@ public class ModifiedStat : BaseStat
 
 	public string getModifiyingAttributeString()
 	{
-		string temp;
+		string temp = "";
+
+		UnityEngine.Debug.Log (_mods.Count);
 
 		for(int i = 0; i < _mods.Count; i++)
 		{
-			UnityEngine.Debug.Log (_mods[i].attribute.Name);
+			temp += _mods[i].attribute.Name;
+			temp += "_";
+			temp += _mods[i].ratio;
+
+			if(i < _mods.Count - 1)
+			{
+				temp += "|";
+			}
 		}
-		return "";
+		UnityEngine.Debug.Log (temp);
+		return temp;
 	}
 
 	private void calculateModValue()

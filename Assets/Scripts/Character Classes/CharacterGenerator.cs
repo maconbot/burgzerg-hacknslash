@@ -28,8 +28,6 @@ public class CharacterGenerator : MonoBehaviour {
 
 		pc.name = "pc";
 
-		//_toon = new PlayerCharacter ();
-		//_toon.Awake ();
 		_toon = pc.GetComponent<PlayerCharacter> ();
 
 		pointsLeft = STARTING_POINTS;
@@ -55,7 +53,15 @@ public class CharacterGenerator : MonoBehaviour {
 		displayAttributes ();
 		displayVitals ();
 		displaySkills ();
-		displayCreateButton ();
+
+		if(_toon.Name == "" || pointsLeft > 0)
+		{
+			displayCreateLabel ();
+		}
+		else
+		{
+			displayCreateButton ();
+		}
 	}
 
 	private void displayName()
@@ -123,11 +129,24 @@ public class CharacterGenerator : MonoBehaviour {
 			GameSettings gsScript = GameObject.Find("__Game Settings").GetComponent<GameSettings>();
 
 			// Change the cur value of the vitals to the max modified value of that vital
-
+			updateCurVitalValues();
 
 			gsScript.SaveCharacterData();
 
 			Application.LoadLevel ("HackNSlash");
+		}
+	}
+
+	private void displayCreateLabel()
+	{
+		GUI.Label (new Rect (Screen.width / 2 - 50, statStartingPos + (10 * LINE_HEIGHT), 100, LINE_HEIGHT), "Creating...", "Button");
+	}
+
+	private void updateCurVitalValues()
+	{
+		for(int i = 0; i < Enum.GetValues (typeof(VitalName)).Length; i++)
+		{
+			_toon.getVital(i).CurrentValue = _toon.getVital(i).AdjustedBaseValue;
 		}
 	}
 }
