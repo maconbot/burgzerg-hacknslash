@@ -133,7 +133,7 @@ public class CharacterGenerator : MonoBehaviour {
 
 			gsScript.SaveCharacterData();
 
-			Application.LoadLevel ("HackNSlash");
+			Application.LoadLevel ("Level 1");
 		}
 	}
 
